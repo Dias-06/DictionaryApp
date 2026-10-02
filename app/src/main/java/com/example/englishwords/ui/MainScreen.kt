@@ -65,12 +65,9 @@ import com.example.englishwords.model.WordEntity
     }
 
 }
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DictionaryScreen(modifier: Modifier = Modifier,
-
                      viewModel: DictionaryViewModel){
-
     val uiState = viewModel.uiState.collectAsState().value
     Column(modifier = modifier.fillMaxSize()) {
         AddWordSection( viewModel = viewModel)
@@ -90,5 +87,5 @@ fun DictionaryScreen(modifier: Modifier = Modifier,
         }
 
     }
-    }
+}
 
