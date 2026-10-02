@@ -9,6 +9,7 @@ import com.example.englishwords.data.Error
 import com.example.englishwords.data.Initial
 import com.example.englishwords.data.Loading
 import com.example.englishwords.data.PredictionItem
+import com.example.englishwords.data.PredictionUiState
 import com.example.englishwords.data.Success
 import com.example.englishwords.model.HistoryEntity
 import com.example.englishwords.model.WordEntity
@@ -20,7 +21,7 @@ import okio.IOException
 class DictionaryViewModel(private  val dao: WordDao, private val history : HistoryDao) : ViewModel() {
 
     val uiState = MutableStateFlow<DictionaryUiState>(Initial)
-    val predictionState = MutableStateFlow<PredictionItem>(PredictionItem())
+    val predictionState = MutableStateFlow<PredictionUiState>(PredictionUiState.Inital)
     val savedWords = dao.getAllWords()
     val searchedWords = history.getHistory()
     fun searchWord(text : String){
@@ -64,11 +65,13 @@ class DictionaryViewModel(private  val dao: WordDao, private val history : Histo
     fun getPrediction(){
         viewModelScope.launch {
             try {
+                predictionState.value = PredictionUiState.Loading
                 Log.d("MyApp", "Запрос начался")
                 val result = Network.predictionApi.getPrediction()
                 Log.d("MyApp", "Результат: $result")
-                predictionState.value = result
+                predictionState.value = PredictionUiState.Success(result)
             }catch (e : Exception){
+                predictionState.value = PredictionUiState.Inital
                 Log.d("MyApp", "Ошибка: ${e.message}")
             }
         }

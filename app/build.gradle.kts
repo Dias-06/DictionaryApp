@@ -1,4 +1,5 @@
 plugins {
+
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
@@ -40,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation("io.coil-kt:coil-compose:2.7.0")
     // Room (База данных)
     val room_version = "2.8.5"
     implementation("androidx.room:room-runtime:$room_version")
