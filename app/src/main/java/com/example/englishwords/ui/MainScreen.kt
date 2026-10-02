@@ -1,6 +1,7 @@
 package com.example.englishwords.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -71,7 +72,9 @@ fun DictionaryScreen(modifier: Modifier = Modifier,
             onSearchClick = {viewModel.searchWord(queryText.trim())})
         when (uiState){
             is Initial -> {Text(text = "Search something")}
-            is Loading -> CircularProgressIndicator()
+            is Loading -> Box(modifier = Modifier.fillMaxWidth()){
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
             is Error -> Text(text = uiState.message, color = Color.Red)
             is Success -> Column() {
                 WordResultContent(result = uiState.res, onSaveClick = {definition ->
