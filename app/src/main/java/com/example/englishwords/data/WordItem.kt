@@ -11,7 +11,7 @@ data class WordItem(
 @Serializable
 data class Entry(
     val senses: List<Sense>? = null,
-    val pronunciations: List<Pronunciation>
+    val pronunciations: List<Pronunciation>? = null
 )
 
 @Serializable

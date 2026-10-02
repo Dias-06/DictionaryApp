@@ -64,16 +64,3 @@ fun WordListContent(
         }
     }
 }
-
-
-@Preview(showBackground = true)
-@Composable
-fun WordListScreenPreview() {
-    val sampleWords = listOf(
-        WordEntity(word = "Apple", definition = "A round red or green fruit"),
-        WordEntity(word = "Book", definition = "A written or printed work consisting of pages"),
-        WordEntity(word = "Code", definition = "System of instructions for a computer")
-    )
-
-    WordListContent(words = sampleWords)
-}

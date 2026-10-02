@@ -76,8 +76,8 @@ fun DictionaryScreen(modifier: Modifier = Modifier,
             is Loading -> CircularProgressIndicator()
             is Error -> Text(text = uiState.message, color = Color.Red)
             is Success -> Column() {
-                Text(text = "${uiState.res.entries?.firstOrNull()?.senses?.firstOrNull()?.definition ?: "Word did not find or loss internet connection"}")
-                Text(text = "Example: ${uiState.res.entries?.firstOrNull()?.senses?.firstOrNull()?.examples?.first() ?: "No example"}")
+                Text(text = "${uiState.res.entries?.firstOrNull()?.senses?.firstOrNull()?.definition ?: "Word did not find"}")
+                Text(text = "Example: ${uiState.res.entries?.firstOrNull()?.senses?.firstOrNull()?.examples?.firstOrNull() ?: "No example"}")
                 Text(text = "Pronunciation: ${uiState.res.entries?.firstOrNull()?.pronunciations?.firstOrNull()?.text ?: "No pronunciation"}")
                 val obj : WordEntity = WordEntity(word = uiState.res.word, definition = uiState.res.entries?.firstOrNull()?.senses?.firstOrNull()?.definition ?: "Unknown")
                 Button(onClick = {viewModel.saveWord(obj)}) {
